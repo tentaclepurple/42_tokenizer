@@ -5,10 +5,8 @@ services:
     build: .
     container_name: polygon-hardhat
     working_dir: /app
-    environment:
-      - NETWORK=mumbai
-      - PRIVATE_KEY=${PRIVATE_KEY}
-      - INFURA_API_KEY=${INFURA_API_KEY}
+    env_file:
+      - .env
     volumes:
       - .:/app
     tty: true
