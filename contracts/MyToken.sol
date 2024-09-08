@@ -8,6 +8,6 @@ contract MyToken is ERC20 {
         _mint(msg.sender, initialSupply);
     }
     function tokenURI() public pure returns (string memory) {
-        return "https://play-lh.googleusercontent.com/_JDQjk8EJGyHOlSQ_zSnoUrjjWOy8fy3spaKAYa8V9rhPbFrzusAuMfkvissvM9FuQ"; 
+        return "https://www.dropbox.com/scl/fi/1au6mg882aewfq0al1m5i/metadata.json?rlkey=6ao31d5qml0fkj7ftwu29pany&dl=0"; 
     }
 }
