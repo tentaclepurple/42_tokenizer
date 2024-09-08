@@ -16,6 +16,9 @@ RUN npm install @nomiclabs/hardhat-ethers ethers dotenv
 
 RUN npm install @nomiclabs/hardhat-waffle waffle chai
 
+RUN npm install @openzeppelin/contracts@4.9.3
+
+
 # Copia el resto del proyecto
 COPY . .
 
