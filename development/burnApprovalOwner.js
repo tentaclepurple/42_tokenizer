@@ -2,7 +2,7 @@ const { ethers } = require("hardhat");
 
 async function main() {
     const [owner] = await ethers.getSigners();
-    const tokenAddress = "0x6a0a5d23174eaE0352e00527DadB3172cC434B13"; // Reemplaza esto con la dirección real de tu contrato
+    const tokenAddress = "0x7f6e5BC06Be14686017F86Ec75B9584dE9Cd8f6c"; // Reemplaza esto con la dirección real de tu contrato
     const Token = await ethers.getContractFactory("MyToken");
     const token = await Token.attach(tokenAddress);
 

@@ -86,6 +86,6 @@ contract MyToken is ERC20, Ownable {
     }
 
 	function getCurrentBurnRequestId() public view returns (uint256) {
-    return _burnRequestId.current();
+		return _burnRequestId.current();
 	}
 }

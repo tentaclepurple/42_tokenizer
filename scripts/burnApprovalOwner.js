@@ -2,12 +2,12 @@ const { ethers } = require("hardhat");
 
 async function main() {
     const [owner] = await ethers.getSigners();
-    const tokenAddress = "0x6a0a5d23174eaE0352e00527DadB3172cC434B13"; // Reemplaza esto con la dirección real de tu contrato
+    const tokenAddress = "0x86e6Cf1d6c15B390c2C1c98e46efda7f01F3cA74"; // Reemplaza esto con la dirección real de tu contrato
     const Token = await ethers.getContractFactory("MyToken");
     const token = await Token.attach(tokenAddress);
 
     // Obtén el ID de la última solicitud de quema
-    const burnRequestId = await token.getCurrentBurnRequestId();
+    const burnRequestId = await token.getCurrentBurnRequestId() - 1;
     console.log("ID de la solicitud de quema a aprobar:", burnRequestId.toString());
 
     // Aprobar la solicitud de quema

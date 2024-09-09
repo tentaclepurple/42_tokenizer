@@ -27,10 +27,10 @@ module.exports = {
       ]
     }
   },
-  paths: {
+  /* paths: {
     sources: "./code",
     scripts: "./deployment",
     cache: "./cache",
     artifacts: "./artifacts"
-  }
+  } */
 };
