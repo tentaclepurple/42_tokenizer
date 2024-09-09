@@ -26,5 +26,11 @@ module.exports = {
         `0x${SIGNER_PRIVATE_KEY}`
       ]
     }
+  },
+  paths: {
+    sources: "./code",
+    scripts: "./deployment",
+    cache: "./cache",
+    artifacts: "./artifacts"
   }
 };
