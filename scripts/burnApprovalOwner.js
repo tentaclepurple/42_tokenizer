@@ -7,7 +7,8 @@ async function main() {
     const token = await Token.attach(tokenAddress);
 
     // Obtén el ID de la última solicitud de quema
-    const burnRequestId = await token.getCurrentBurnRequestId() - 1;
+    const burnRequestId = 5;
+    //const burnRequestId = await token.getCurrentBurnRequestId() - 1;
     console.log("ID de la solicitud de quema a aprobar:", burnRequestId.toString());
 
     // Aprobar la solicitud de quema

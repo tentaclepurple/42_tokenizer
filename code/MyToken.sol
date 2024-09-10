@@ -24,7 +24,7 @@ contract MyToken is ERC20, Ownable {
     event BurnRequestApproved(uint256 indexed requestId, address approver);
     event BurnRequestExecuted(uint256 indexed requestId, uint256 amount);
 
-    constructor(uint256 initialSupply, address _secondSigner) ERC20("PurpleTentacleToken42", "PTT") Ownable() {
+    constructor(uint256 initialSupply, address _secondSigner) ERC20("PurpleTentacleToken42", "PT0") Ownable() {
         _mint(msg.sender, initialSupply);
         secondSigner = _secondSigner;
     }

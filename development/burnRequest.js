@@ -49,7 +49,8 @@ async function main() {
 
         // Get the ID of the last burn request
         const burnRequestId = await token.getCurrentBurnRequestId();
-        console.log("Burn request ID:", burnRequestId.toString());
+        const actualId = burnRequestId.sub(1)
+        console.log("Burn request ID:", actualId.toString());
 
         // Check the new owner balance
         const newOwnerBalance = await token.balanceOf(owner.address);

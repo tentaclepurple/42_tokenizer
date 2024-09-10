@@ -1,30 +1,66 @@
 const { ethers } = require("hardhat");
+const readline = require('readline');
 
-async function main() {
-    const [owner] = await ethers.getSigners();
-    const tokenAddress = "0x7f6e5BC06Be14686017F86Ec75B9584dE9Cd8f6c"; // Reemplaza esto con la dirección real de tu contrato
-    const Token = await ethers.getContractFactory("MyToken");
-    const token = await Token.attach(tokenAddress);
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+});
 
-    // Obtén el ID de la última solicitud de quema
-    const burnRequestId = await token.getCurrentBurnRequestId();
-    console.log("ID de la solicitud de quema a aprobar:", burnRequestId.toString());
-
-    // Aprobar la solicitud de quema
-    console.log("Aprobando la solicitud de quema como propietario...");
-    const approveTx = await token.approveBurnRequest(burnRequestId);
-    await approveTx.wait();
-    console.log("Solicitud de quema aprobada por el propietario");
-
-    // Verificar el estado de la solicitud
-    const request = await token.burnRequests(burnRequestId);
-    console.log("Estado de la solicitud:", 
-        request.executed ? "Ejecutada" : "Pendiente de aprobación del segundo firmante");
+function askQuestion(query) {
+    return new Promise(resolve => rl.question(query, resolve));
 }
 
-main()
-    .then(() => process.exit(0))
-    .catch((error) => {
-        console.error(error);
-        process.exit(1);
-    });
+async function main() {
+    try {
+        // Request data from the user
+        const tokenAddress = await askQuestion("Enter the token contract address: ");
+        const ownerPrivateKey = await askQuestion("Enter the owner's private key: ");
+        const burnRequestId = await askQuestion("Enter the burn request ID to approve: ");
+
+        const [owner] = await ethers.getSigners();
+        const Token = await ethers.getContractFactory("MyToken");
+        const token = await Token.attach(tokenAddress);
+
+        // Function to compare a provided private key with the owner's
+        function comparePrivateKey(providedPrivateKey) {
+            try {
+                const wallet = new ethers.Wallet(providedPrivateKey);
+                return wallet.address.toLowerCase() === owner.address.toLowerCase();
+            } catch (error) {
+                console.error("Error processing the provided private key:", error.message);
+                return false;
+            }
+        }
+
+        // Compare the provided private key
+        const isMatch = comparePrivateKey(ownerPrivateKey);
+
+        if (!isMatch) {
+            throw new Error("The provided private key does not match the owner's. Aborting operation.");
+        }
+
+        console.log("Burn request ID to approve:", burnRequestId);
+
+        // Approve the burn request
+        console.log("Approving the burn request as owner...");
+        const approveTx = await token.approveBurnRequest(burnRequestId);
+        await approveTx.wait();
+        console.log("Burn request approved by the owner");
+
+        // Verify the request status
+        const request = await token.burnRequests(burnRequestId);
+        console.log("Request status:", 
+            request.executed ? "Executed" : "Pending second signer approval");
+
+    } catch (error) {
+        console.error("An error occurred:", error.message);
+    } finally {
+        rl.close();
+        process.exit(0);
+    }
+}
+
+main().catch((error) => {
+    console.error("Unhandled error:", error);
+    process.exit(1);
+});

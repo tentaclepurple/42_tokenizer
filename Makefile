@@ -22,6 +22,8 @@ owner:
 signer:
 	npx hardhat run development/burnApprovalSigner.js --network amoy
 
+cleancache:
+	npx hardhat clean
 
 clean: down
 	yes | docker system prune -a
