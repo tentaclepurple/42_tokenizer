@@ -11,16 +11,16 @@ compile:
 	npx hardhat compile
 
 deploy:
-	npx hardhat run development/deployTBM.js --network amoy
+	npx hardhat run deployment/deployTBM.js --network amoy
 
 burn:
-	npx hardhat run development/burnRequest.js --network amoy
+	npx hardhat run deployment/burnRequest.js --network amoy
 
 owner:
-	npx hardhat run development/burnApprovalOwner.js --network amoy	
+	npx hardhat run deployment/burnApprovalOwner.js --network amoy	
 
 signer:
-	npx hardhat run development/burnApprovalSigner.js --network amoy
+	npx hardhat run deployment/burnApprovalSigner.js --network amoy
 
 cleancache:
 	npx hardhat clean
