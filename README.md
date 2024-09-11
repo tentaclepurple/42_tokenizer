@@ -40,7 +40,7 @@ The ERC20 standard ensures compatibility with a wide range of wallets, exchanges
 
 ## Smart Contract Address
 - Network: Polygon Amoy Testnet
-- Address: [Your Contract Address Here when deployed...]
+- Address: 0x26693c36509258f6a18967A7fe922B3bC0Cb9050
 
 ## Setup and Deployment
 Refer to the documentation folder for detailed instructions on setting up the development environment, deploying the contract, and interacting with the token.

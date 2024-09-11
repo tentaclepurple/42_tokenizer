@@ -24,13 +24,13 @@ contract MyToken is ERC20, Ownable {
     event BurnRequestApproved(uint256 indexed requestId, address approver);
     event BurnRequestExecuted(uint256 indexed requestId, uint256 amount);
 
-    constructor(uint256 initialSupply, address _secondSigner) ERC20("PurpleTentacleToken42", "PT0") Ownable() {
+    constructor(uint256 initialSupply, address _secondSigner) ERC20("ElFaryCoin42", "EFC") Ownable() {
         _mint(msg.sender, initialSupply);
         secondSigner = _secondSigner;
     }
 
     function tokenURI() public pure returns (string memory) {
-        return "https://tentaclepurple.github.io/42_tokenizer/metadata.json";
+        return "https://tentaclepurple.github.io/42_tokenizer/documentation/metadata.json";
     }
 
     function createBurnRequest(uint256 amount) public onlyOwner {

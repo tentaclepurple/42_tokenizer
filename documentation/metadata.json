@@ -1,6 +1,8 @@
 {
-	"name": "ElFaryCoin",
-	"description": "Token for 42 proyect tokenizer",
+	"name": "ElFaryCoin42",
+  	"symbol": "EFC",
+  	"decimals": 18,
+	"description": "Token for 42 proyect Tokenizer",
 	"image": "https://raw.githubusercontent.com/tentaclepurple/42_tokenizer/main/documentation/ElFaryCoin.png"
 }
 
